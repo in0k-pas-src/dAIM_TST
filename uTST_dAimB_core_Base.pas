@@ -137,14 +137,18 @@ implementation
 
 procedure tTST_dAimB_core_Base.INITialize_fromNIL;
 begin
+    //---!!!---
     dAimB_INITialize(dAIM);
+    //---!!!---
     AssertNull(dAIM);
 end;
 
 procedure tTST_dAimB_core_Base.INITialize_fromSomething;
 begin
     dAIM:=self;
+    //---!!!---
     dAimB_INITialize(dAIM);
+    //---!!!---
     AssertNull(dAIM);
 end;
 
@@ -152,15 +156,18 @@ end;
 
 procedure tTST_dAimB_core_Base.FINALize_fromNIL;
 begin
-    dAimB_INITialize(dAIM);
-    dAimB_FINALize  (dAIM,_itmSizeOf_);
+    //---!!!---
+    dAimB_FINALize(dAIM,_itmSizeOf_);
+    //---!!!---
     AssertNull(dAIM);
 end;
 
 procedure tTST_dAimB_core_Base.FINALize_fromManual;
 begin
     dAIM:=_MANUAL_dAIM_create(16+random(16));
-    dAimB_FINALize  (dAIM,_itmSizeOf_);
+    //---!!!---
+    dAimB_FINALize(dAIM,_itmSizeOf_);
+    //---!!!---
     AssertNull(dAIM);
 end;
 
@@ -170,9 +177,10 @@ procedure tTST_dAimB_core_Base.INITialize_Count;
 var l:byte;
 begin
     l:=16+random(16);
+    //---!!!---
     dAimB_INITialize(dAIM,l,_itmSizeOf_);
-    //---
-    AssertEquals(l,_MANUAL_dAIM_Length(dAIM));
+    //---!!!---
+    AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
 end;
 
 procedure tTST_dAimB_core_Base.INITialize_defValue;
@@ -182,12 +190,11 @@ var l:byte;
 begin
     l:=16+random(16);
     def:=222;
+    //---!!!---
     dAimB_INITialize(dAIM,l,_itmSizeOf_,@def);
-    //---
-    AssertEquals(l,_MANUAL_dAIM_Length(dAIM));
-    for i:=0 to _MANUAL_dAIM_Length(dAIM)-1 do begin
-        _MANUAL_dAIM_tstVAL(dAIM,i,def);
-    end;
+    //---!!!---
+    AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
+    for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,def);
 end;
 
 //------------------------------------------------------------------------------
@@ -201,9 +208,10 @@ procedure tTST_dAimB_core_Base.getLength;
 var l:byte;
 begin
     l:=16+random(16);
-    dAimB_INITialize(dAIM,l,_itmSizeOf_);
-    //---
+    dAIM:=_MANUAL_dAIM_create(l);
+    //---!!!---
     AssertEquals(l,dAimB_getLength(dAIM));
+    //---!!!---
 end;
 
 //------------------------------------------------------------------------------
@@ -213,17 +221,19 @@ var l:byte;
     i:integer;
 begin
     l:=16+random(16);
-    dAimB_INITialize(dAIM,l,_itmSizeOf_);
-    //---
-    for i:=0 to l-1 do begin
-      AssertSame(_MANUAL_dAIM_pItem(dAIM,i),dAimB_clc_pItem(dAIM,i,_lngSizeOf_));
-    end;
+    dAIM:=_MANUAL_dAIM_create(l);
+    //---!!!---
+    for i:=0 to l-1 do
+    AssertSame(_MANUAL_dAIM_pItem(dAIM,i),dAimB_clc_pItem(dAIM,i,_lngSizeOf_));
     AssertSame(_MANUAL_dAIM_pItem(dAIM,l),dAimB_clc_pItem(dAIM,l,_lngSizeOf_));
+    //---!!!---
 end;
 
 procedure tTST_dAimB_core_Base.get_pItem_fromNIL;
 begin
+    //---!!!---
     AssertNull(dAimB_get_pItem(NIL,random(255),_lngSizeOf_));
+    //---!!!---
 end;
 
 procedure tTST_dAimB_core_Base.get_pItem;
@@ -231,12 +241,12 @@ var l:byte;
     i:integer;
 begin
     l:=16+random(16);
-    dAimB_INITialize(dAIM,l,_itmSizeOf_);
-    //---
-    for i:=0 to l-1 do begin
-      AssertSame(dAimB_clc_pItem(dAIM,i,_lngSizeOf_),dAimB_get_pItem(dAIM,i,_lngSizeOf_));
-    end;
+    dAIM:=_MANUAL_dAIM_create(l);
+    //---!!!---
+    for i:=0 to l-1 do
+    AssertSame(_MANUAL_dAIM_pItem(dAIM,i),dAimB_get_pItem(dAIM,i,_lngSizeOf_));
     AssertNull(dAimB_get_pItem(dAIM,l,_lngSizeOf_));
+    //---!!!---
 end;
 
 // -^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-
