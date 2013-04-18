@@ -22,7 +22,8 @@ type
     function  _MANUAL_dAIM_Length(dAIM:pointer):SizeInt;
     function  _MANUAL_dAIM_pItem (dAIM:pointer; index:SizeInt):pointer;
     procedure _MANUAL_dAIM_nmbr01(dAIM:pointer);
-    procedure _MANUAL_dAIM_tstVAL(dAIM:pointer; index:SizeInt; value:integer);
+    procedure _MANUAL_dAIM_tstVAL(dAIM:pointer; index:SizeInt; value:integer); overload;
+    procedure _MANUAL_dAIM_tstVAL(dAIM:pointer; index:SizeInt; value:pointer); overload;
   protected
     dAIM:pointer; //< подопотный
   protected
@@ -133,6 +134,15 @@ begin
       2  : AssertEquals('Items['+inttostr(index)+'].Value',Word (value),PWord (_MANUAL_dAIM_pItem(dAIM,index))^);
       4  : AssertEquals('Items['+inttostr(index)+'].Value',DWord(value),pDWord(_MANUAL_dAIM_pItem(dAIM,index))^);
     end;
+end;
+
+procedure tTST_dAim__coreTestCase._MANUAL_dAIM_tstVAL(dAIM:pointer; index:SizeInt; value:pointer);
+begin
+    AssertNotNull('_MANUAL_dAIM_tstVAL is FAIL:  dAIM not set',dAIM);
+    AssertTrue   ('_MANUAL_dAIM_tstVAL is FAIL: _lngSizeOf_ not set',_lngSizeOf_ in [1,2,4,8]);
+    AssertTrue   ('_MANUAL_dAIM_tstVAL is FAIL: _itmSizeOf_ not set',_itmSizeOf_ = sizeOf(Pointer));
+    //---
+    AssertSame   ('Items['+inttostr(index)+'].Value',value,ppointer (_MANUAL_dAIM_pItem(dAIM,index))^);
 end;
 
 end.

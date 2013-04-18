@@ -1,4 +1,4 @@
-unit uTST_dAimBB_CommonSET;
+unit uTST_dAimWW_CommonSET;
 (*$define testCase -- пометка для gitExtensions-Statickics что это файл ТЕСТ
   [Test
 *)
@@ -6,16 +6,16 @@ unit uTST_dAimBB_CommonSET;
 interface
 
 uses testregistry, uTST_dAim__coreTestCase,
-  dAimBB;
+  dAimWW;
 
 type
- tTST_dAimBB_core=class(tTST_dAim__coreTestCase)
+ tTST_dAimWW_core=class(tTST_dAim__coreTestCase)
   public
     constructor Create; override;
   end;
 
 type //-------------------------------------------------------------------------
- tTST_dAimBB_Base=class(tTST_dAimBB_core)
+ tTST_dAimWW_Base=class(tTST_dAimWW_core)
   published
     procedure INITialize_fromNIL;
     procedure INITialize_fromSomething;
@@ -34,21 +34,21 @@ type //-------------------------------------------------------------------------
   end;
 
 type //-------------------------------------------------------------------------
- tTST_dAimBB_core_numbering=class(tTST_dAimBB_core)
+ tTST_dAimWW_core_numbering=class(tTST_dAimWW_core)
   protected
     procedure SetUp; override;
   end;
 
 type //-------------------------------------------------------------------------
 
- tTST_dAimBB_setLength_common=class(tTST_dAimBB_core_numbering)
+ tTST_dAimWW_setLength_common=class(tTST_dAimWW_core_numbering)
   published
     procedure forNilArray;
     procedure count_less;
     procedure count_more;
   end;
 
- tTST_dAimBB_setLength_defVAL=class(tTST_dAimBB_core_numbering)
+ tTST_dAimWW_setLength_defVAL=class(tTST_dAimWW_core_numbering)
   published
     procedure forNilArray;
     procedure count_less;
@@ -57,7 +57,7 @@ type //-------------------------------------------------------------------------
 
 type //-------------------------------------------------------------------------
 
- tTST_dAimBB_itemsADD_common_toBegin=class(tTST_dAimBB_core_numbering)
+ tTST_dAimWW_itemsADD_common_toBegin=class(tTST_dAimWW_core_numbering)
   published
     procedure forNilArray;
     procedure count_0_element;
@@ -65,7 +65,7 @@ type //-------------------------------------------------------------------------
     procedure count_random;
   end;
 
- tTST_dAimBB_itemsADD_common_toMiddle=class(tTST_dAimBB_core_numbering)
+ tTST_dAimWW_itemsADD_common_toMiddle=class(tTST_dAimWW_core_numbering)
   published
     procedure forNilArray;
     procedure count_0_element;
@@ -73,22 +73,14 @@ type //-------------------------------------------------------------------------
     procedure count_random;
   end;
 
- tTST_dAimBB_itemsADD_common_toEND=class(tTST_dAimBB_core_numbering)
+ tTST_dAimWW_itemsADD_common_toEND=class(tTST_dAimWW_core_numbering)
   published
     procedure count_0_element;
     procedure count_1_element;
     procedure count_random;
   end;
 
- tTST_dAimBB_itemsADD_defVAL_toBegin=class(tTST_dAimBB_core_numbering)
-  published
-    procedure forNilArray;
-    procedure count_0_element;
-    procedure count_1_element;
-    procedure count_random;
-  end;
-
- tTST_dAimBB_itemsADD_defVAL_toMiddle=class(tTST_dAimBB_core_numbering)
+ tTST_dAimWW_itemsADD_defVAL_toBegin=class(tTST_dAimWW_core_numbering)
   published
     procedure forNilArray;
     procedure count_0_element;
@@ -96,7 +88,15 @@ type //-------------------------------------------------------------------------
     procedure count_random;
   end;
 
- tTST_dAimBB_itemsADD_defVAL_toEND=class(tTST_dAimBB_core_numbering)
+ tTST_dAimWW_itemsADD_defVAL_toMiddle=class(tTST_dAimWW_core_numbering)
+  published
+    procedure forNilArray;
+    procedure count_0_element;
+    procedure count_1_element;
+    procedure count_random;
+  end;
+
+ tTST_dAimWW_itemsADD_defVAL_toEND=class(tTST_dAimWW_core_numbering)
   published
     procedure count_0_element;
     procedure count_1_element;
@@ -105,7 +105,7 @@ type //-------------------------------------------------------------------------
 
 type //-------------------------------------------------------------------------
 
- tTST_dAimBB_itemsDEL_fromBegin=class(tTST_dAimBB_core_numbering)
+ tTST_dAimWW_itemsDEL_fromBegin=class(tTST_dAimWW_core_numbering)
   published
     procedure count_0_element;
     procedure count_1_element;
@@ -114,14 +114,14 @@ type //-------------------------------------------------------------------------
     procedure count_moreLength;
   end;
 
- tTST_dAimBB_itemsDEL_fromEnd=class(tTST_dAimBB_core_numbering)
+ tTST_dAimWW_itemsDEL_fromEnd=class(tTST_dAimWW_core_numbering)
   published
     procedure count_0_element;
     procedure count_1_element;
     procedure count_lessLength;
   end;
 
- tTST_dAimBB_itemsDEL_fromMiddle=class(tTST_dAimBB_core_numbering)
+ tTST_dAimWW_itemsDEL_fromMiddle=class(tTST_dAimWW_core_numbering)
   published
     procedure count_0_element;
     procedure count_1_element;
@@ -131,7 +131,7 @@ type //-------------------------------------------------------------------------
 
 type //-------------------------------------------------------------------------
 
- tTST_dAimBB_FIND=class(tTST_dAimBB_core_numbering)
+ tTST_dAimWW_FIND=class(tTST_dAimWW_core_numbering)
   published
     procedure noExistingValue;
     procedure AllExistingValue;
@@ -139,68 +139,68 @@ type //-------------------------------------------------------------------------
 
 implementation
 //------------------------------------------------------------------------------
-const cTST_SuitePath=cTest__dAim__SuitePath+'.[Byte][Byte]CommonSET';
-type  tTST_tDefValue=byte;
+const cTST_SuitePath=cTest__dAim__SuitePath+'.[Word][Word]CommonSET';
+type  tTST_tDefValue=Word;
 //------------------------------------------------------------------------------
 
-constructor tTST_dAimBB_core.Create;
+constructor tTST_dAimWW_core.Create;
 begin
     inherited;
-   _lngSizeOf_:=1;
-   _itmSizeOf_:=1;
+   _lngSizeOf_:=2;
+   _itmSizeOf_:=2;
 end;
 
 //------------------------------------------------------------------------------
 
-procedure tTST_dAimBB_Base.INITialize_fromNIL;
+procedure tTST_dAimWW_Base.INITialize_fromNIL;
 begin
     //---!!!---
-    dAimBB_INITialize(dAIM);
+    dAimWW_INITialize(dAIM);
     //---!!!---
     AssertNull(dAIM);
 end;
 
-procedure tTST_dAimBB_Base.INITialize_fromSomething;
+procedure tTST_dAimWW_Base.INITialize_fromSomething;
 begin
     dAIM:=self;
     //---!!!---
-    dAimBB_INITialize(dAIM);
+    dAimWW_INITialize(dAIM);
     //---!!!---
     AssertNull(dAIM);
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-procedure tTST_dAimBB_Base.FINALize_fromNIL;
+procedure tTST_dAimWW_Base.FINALize_fromNIL;
 begin
     //---!!!---
-    dAimBB_FINALize(dAIM);
+    dAimWW_FINALize(dAIM);
     //---!!!---
     AssertNull(dAIM);
 end;
 
-procedure tTST_dAimBB_Base.FINALize_fromManual;
+procedure tTST_dAimWW_Base.FINALize_fromManual;
 begin
     dAIM:=_MANUAL_dAIM_create(16+random(16));
     //---!!!---
-    dAimBB_FINALize(dAIM);
+    dAimWW_FINALize(dAIM);
     //---!!!---
     AssertNull(dAIM);
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-procedure tTST_dAimBB_Base.INITialize_Count;
+procedure tTST_dAimWW_Base.INITialize_Count;
 var l:byte;
 begin
     l:=16+random(16);
     //---!!!---
-    dAimBB_INITialize(dAIM,l);
+    dAimWW_INITialize(dAIM,l);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
 end;
 
-procedure tTST_dAimBB_Base.INITialize_defValue;
+procedure tTST_dAimWW_Base.INITialize_defValue;
 var l:byte;
   def:tTST_tDefValue;
     i:integer;
@@ -208,7 +208,7 @@ begin
     l:=16+random(16);
     def:=222;
     //---!!!---
-    dAimBB_INITialize(dAIM,l,def);
+    dAimWW_INITialize(dAIM,l,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,def);
@@ -216,24 +216,24 @@ end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-procedure tTST_dAimBB_Base.getLength_fromNIL;
+procedure tTST_dAimWW_Base.getLength_fromNIL;
 begin
-    AssertEquals(0,dAimBB_getLength(dAIM));
+    AssertEquals(0,dAimWW_getLength(dAIM));
 end;
 
-procedure tTST_dAimBB_Base.getLength;
+procedure tTST_dAimWW_Base.getLength;
 var l:byte;
 begin
     l:=16+random(16);
     dAIM:=_MANUAL_dAIM_create(l);
     //---!!!---
-    AssertEquals(l,dAimBB_getLength(dAIM));
+    AssertEquals(l,dAimWW_getLength(dAIM));
     //---!!!---
 end;
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-procedure tTST_dAimBB_Base.clc_pItem;
+procedure tTST_dAimWW_Base.clc_pItem;
 var l:byte;
     i:integer;
 begin
@@ -241,65 +241,65 @@ begin
     dAIM:=_MANUAL_dAIM_create(l);
     //---!!!---
     for i:=0 to l-1 do
-    AssertSame('wrong from range',_MANUAL_dAIM_pItem(dAIM,i),dAimBB_clc_pItem(dAIM,i));
-    AssertSame('wrong from OUT'  ,_MANUAL_dAIM_pItem(dAIM,l),dAimBB_clc_pItem(dAIM,l));
+    AssertSame('wrong from range',_MANUAL_dAIM_pItem(dAIM,i),dAimWW_clc_pItem(dAIM,i));
+    AssertSame('wrong from OUT'  ,_MANUAL_dAIM_pItem(dAIM,l),dAimWW_clc_pItem(dAIM,l));
     //---!!!---
 end;
 
-procedure tTST_dAimBB_Base.get_pItem;
+procedure tTST_dAimWW_Base.get_pItem;
 var l:byte;
     i:integer;
 begin
     l:=16+random(16);
     dAIM:=_MANUAL_dAIM_create(l);
     //---!!!---
-    AssertSame('wrong from NIL'  , NIL,dAimBB_get_pItem(NIL,l));
+    AssertSame('wrong from NIL'  , NIL,dAimWW_get_pItem(NIL,l));
     for i:=0 to l-1 do
-    AssertSame('wrong from range',_MANUAL_dAIM_pItem(dAIM,i),dAimBB_get_pItem(dAIM,i));
-    AssertSame('wrong from OUT'  ,_MANUAL_dAIM_pItem(dAIM,l),dAimBB_clc_pItem(dAIM,l));
+    AssertSame('wrong from range',_MANUAL_dAIM_pItem(dAIM,i),dAimWW_get_pItem(dAIM,i));
+    AssertSame('wrong from OUT'  ,_MANUAL_dAIM_pItem(dAIM,l),dAimWW_clc_pItem(dAIM,l));
     //---!!!---
 end;
 
 // -^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-
 
-procedure tTST_dAimBB_core_numbering.SetUp;
+procedure tTST_dAimWW_core_numbering.SetUp;
 begin
-    dAimBB_INITialize (dAIM,64+random(16));
+    dAimWW_INITialize (dAIM,64+random(16));
    _MANUAL_dAIM_nmbr01(dAIM);
 end;
 
 // -^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-
 
-procedure tTST_dAimBB_setLength_common.forNilArray;
+procedure tTST_dAimWW_setLength_common.forNilArray;
 var l:integer;
 begin
    _MANUAL_dAIM_FINAL(dAIM);
     l:=64+random(16);
     //---!!!---
-    dAimBB_setLength(dAIM,l);
+    dAimWW_setLength(dAIM,l);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
 end;
 
-procedure tTST_dAimBB_setLength_common.count_less;
+procedure tTST_dAimWW_setLength_common.count_less;
 var l,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     l:=1+random(l div 4)+random(l div 2);
     //---!!!---
-    dAimBB_setLength(dAIM,l);
+    dAimWW_setLength(dAIM,l);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_setLength_common.count_more;
+procedure tTST_dAimWW_setLength_common.count_more;
 var l,k,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=1+random(16);
     //---!!!---
-    dAimBB_setLength(dAIM,l+k);
+    dAimWW_setLength(dAIM,l+k);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+k,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
@@ -307,7 +307,7 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure tTST_dAimBB_setLength_defVAL.forNilArray;
+procedure tTST_dAimWW_setLength_defVAL.forNilArray;
 var l,i:integer;
     def:tTST_tDefValue;
 begin
@@ -315,13 +315,13 @@ begin
     l:=64+random(16);
     def:=222;
     //---!!!---
-    dAimBB_setLength(dAIM,l,def);
+    dAimWW_setLength(dAIM,l,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,def);
 end;
 
-procedure tTST_dAimBB_setLength_defVAL.count_less;
+procedure tTST_dAimWW_setLength_defVAL.count_less;
 var l,i:integer;
     def:tTST_tDefValue;
 begin
@@ -329,13 +329,13 @@ begin
     l:=1+random(l div 4)+random(l div 2);
     def:=222;
     //---!!!---
-    dAimBB_setLength(dAIM,l,DEF);
+    dAimWW_setLength(dAIM,l,DEF);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_setLength_defVAL.count_more;
+procedure tTST_dAimWW_setLength_defVAL.count_more;
 var l,k,i:integer;
     def  :tTST_tDefValue;
 begin
@@ -343,7 +343,7 @@ begin
     k:=1+random(16);
     def:=222;
     //---!!!---
-    dAimBB_setLength(dAIM,l+k,DEF);
+    dAimWW_setLength(dAIM,l+k,DEF);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+k,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
@@ -352,46 +352,46 @@ end;
 
 // -^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-
 
-procedure tTST_dAimBB_itemsADD_common_toBegin.forNilArray;
+procedure tTST_dAimWW_itemsADD_common_toBegin.forNilArray;
 var l:integer;
 begin
    _MANUAL_dAIM_FINAL(dAIM);
     l:=64+random(16);
     //---!!!---
-    dAimBB_itemsADD(dAIM,0,l);
+    dAimWW_itemsADD(dAIM,0,l);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
 end;
 
-procedure tTST_dAimBB_itemsADD_common_toBegin.count_0_element;
+procedure tTST_dAimWW_itemsADD_common_toBegin.count_0_element;
 var l,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsADD(dAIM,0,0);
+    dAimWW_itemsADD(dAIM,0,0);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_itemsADD_common_toBegin.count_1_element;
+procedure tTST_dAimWW_itemsADD_common_toBegin.count_1_element;
 var l,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsADD(dAIM,0,1);
+    dAimWW_itemsADD(dAIM,0,1);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+1,_MANUAL_dAIM_Length(dAIM));
     for i:=1 to l do _MANUAL_dAIM_tstVAL(dAIM,i,i-1);
 end;
 
-procedure tTST_dAimBB_itemsADD_common_toBegin.count_random;
+procedure tTST_dAimWW_itemsADD_common_toBegin.count_random;
 var l,c,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     c:=1+random(16);
     //---!!!---
-    dAimBB_itemsADD(dAIM,0,c);
+    dAimWW_itemsADD(dAIM,0,c);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+c,_MANUAL_dAIM_Length(dAIM));
     for i:=c to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i-c);
@@ -399,51 +399,51 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure tTST_dAimBB_itemsADD_common_toMiddle.forNilArray;
+procedure tTST_dAimWW_itemsADD_common_toMiddle.forNilArray;
 var k,c:integer;
 begin
    _MANUAL_dAIM_FINAL(dAIM);
     k:=1 +random(16);
     c:=64+random(16);
     //---!!!---
-    dAimBB_itemsADD(dAIM,k,c);
+    dAimWW_itemsADD(dAIM,k,c);
     //---!!!---
     AssertEquals('wrong "LENGTH"',k+c,_MANUAL_dAIM_Length(dAIM));
 end;
 
-procedure tTST_dAimBB_itemsADD_common_toMiddle.count_0_element;
+procedure tTST_dAimWW_itemsADD_common_toMiddle.count_0_element;
 var l,k,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=1 +random(l div 2);
     //---!!!---
-    dAimBB_itemsADD(dAIM,k,0);
+    dAimWW_itemsADD(dAIM,k,0);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_itemsADD_common_toMiddle.count_1_element;
+procedure tTST_dAimWW_itemsADD_common_toMiddle.count_1_element;
 var l,k,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=1 +random(l div 2);
     //---!!!---
-    dAimBB_itemsADD(dAIM,k,1);
+    dAimWW_itemsADD(dAIM,k,1);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+1,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to k-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
     for i:=k+1 to k-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i-1);
 end;
 
-procedure tTST_dAimBB_itemsADD_common_toMiddle.count_random;
+procedure tTST_dAimWW_itemsADD_common_toMiddle.count_random;
 var l,c,k,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=1+random(l div 2);
     c:=1+random(16);
     //---!!!---
-    dAimBB_itemsADD(dAIM,k,c);
+    dAimWW_itemsADD(dAIM,k,c);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+c,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to k-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
@@ -452,35 +452,35 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure tTST_dAimBB_itemsADD_common_toEND.count_0_element;
+procedure tTST_dAimWW_itemsADD_common_toEND.count_0_element;
 var l,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsADD(dAIM,l,0);
+    dAimWW_itemsADD(dAIM,l,0);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_itemsADD_common_toEND.count_1_element;
+procedure tTST_dAimWW_itemsADD_common_toEND.count_1_element;
 var l,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsADD(dAIM,l,1);
+    dAimWW_itemsADD(dAIM,l,1);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+1,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_itemsADD_common_toEND.count_random;
+procedure tTST_dAimWW_itemsADD_common_toEND.count_random;
 var l,c,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     c:=1+random(16);
     //---!!!---
-    dAimBB_itemsADD(dAIM,l,c);
+    dAimWW_itemsADD(dAIM,l,c);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+c,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
@@ -488,7 +488,7 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure tTST_dAimBB_itemsADD_defVAL_toBegin.forNilArray;
+procedure tTST_dAimWW_itemsADD_defVAL_toBegin.forNilArray;
 var l,i:integer;
     def:tTST_tDefValue;
 begin
@@ -496,40 +496,40 @@ begin
    _MANUAL_dAIM_FINAL(dAIM);
     l:=64+random(16);
     //---!!!---
-    dAimBB_itemsADD(dAIM,0,l,def);
+    dAimWW_itemsADD(dAIM,0,l,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
-    for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,def);
+    for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,l-1,def);
 end;
 
-procedure tTST_dAimBB_itemsADD_defVAL_toBegin.count_0_element;
+procedure tTST_dAimWW_itemsADD_defVAL_toBegin.count_0_element;
 var l,i:integer;
     def:tTST_tDefValue;
 begin
     def:=222;
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsADD(dAIM,0,0,def);
+    dAimWW_itemsADD(dAIM,0,0,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_itemsADD_defVAL_toBegin.count_1_element;
+procedure tTST_dAimWW_itemsADD_defVAL_toBegin.count_1_element;
 var l,i:integer;
     def:tTST_tDefValue;
 begin
     def:=222;
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsADD(dAIM,0,1,def);
+    dAimWW_itemsADD(dAIM,0,1,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+1,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to 1-1 do _MANUAL_dAIM_tstVAL(dAIM,i,def);
     for i:=1 to l   do _MANUAL_dAIM_tstVAL(dAIM,i,i-1);
 end;
 
-procedure tTST_dAimBB_itemsADD_defVAL_toBegin.count_random;
+procedure tTST_dAimWW_itemsADD_defVAL_toBegin.count_random;
 var l,c,i:integer;
     def:tTST_tDefValue;
 begin
@@ -537,7 +537,7 @@ begin
     l:=_MANUAL_dAIM_Length(dAIM);
     c:=1+random(16);
     //---!!!---
-    dAimBB_itemsADD(dAIM,0,c,def);
+    dAimWW_itemsADD(dAIM,0,c,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+c,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to c-1 do _MANUAL_dAIM_tstVAL(dAIM,i,def);
@@ -546,7 +546,7 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure tTST_dAimBB_itemsADD_defVAL_toMiddle.forNilArray;
+procedure tTST_dAimWW_itemsADD_defVAL_toMiddle.forNilArray;
 var k,c,i:integer;
     def:tTST_tDefValue;
 begin
@@ -555,13 +555,13 @@ begin
     k:=1 +random(16);
     c:=64+random(16);
     //---!!!---
-    dAimBB_itemsADD(dAIM,k,c,def);
+    dAimWW_itemsADD(dAIM,k,c,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',k+c,_MANUAL_dAIM_Length(dAIM));
     for i:=k to k+c-1 do _MANUAL_dAIM_tstVAL(dAIM,i,def);
 end;
 
-procedure tTST_dAimBB_itemsADD_defVAL_toMiddle.count_0_element;
+procedure tTST_dAimWW_itemsADD_defVAL_toMiddle.count_0_element;
 var l,k,i:integer;
     def:tTST_tDefValue;
 begin
@@ -569,13 +569,13 @@ begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=1 +random(l div 2);
     //---!!!---
-    dAimBB_itemsADD(dAIM,k,0,def);
+    dAimWW_itemsADD(dAIM,k,0,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_itemsADD_defVAL_toMiddle.count_1_element;
+procedure tTST_dAimWW_itemsADD_defVAL_toMiddle.count_1_element;
 var l,k,i:integer;
     def:tTST_tDefValue;
 begin
@@ -583,7 +583,7 @@ begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=1 +random(l div 2);
     //---!!!---
-    dAimBB_itemsADD(dAIM,k,1,def);
+    dAimWW_itemsADD(dAIM,k,1,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+1,_MANUAL_dAIM_Length(dAIM));
     for i:=0   to k-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
@@ -591,7 +591,7 @@ begin
     for i:=k+1 to k-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i-1);
 end;
 
-procedure tTST_dAimBB_itemsADD_defVAL_toMiddle.count_random;
+procedure tTST_dAimWW_itemsADD_defVAL_toMiddle.count_random;
 var l,c,k,i:integer;
     def:tTST_tDefValue;
 begin
@@ -600,7 +600,7 @@ begin
     k:=1+random(l div 2);
     c:=1+random(16);
     //---!!!---
-    dAimBB_itemsADD(dAIM,k,c,def);
+    dAimWW_itemsADD(dAIM,k,c,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+c,_MANUAL_dAIM_Length(dAIM));
     for i:=0   to k-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
@@ -610,34 +610,34 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure tTST_dAimBB_itemsADD_defVAL_toEND.count_0_element;
+procedure tTST_dAimWW_itemsADD_defVAL_toEND.count_0_element;
 var l,i:integer;
     def:tTST_tDefValue;
 begin
     def:=222;
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsADD(dAIM,l,0,def);
+    dAimWW_itemsADD(dAIM,l,0,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_itemsADD_defVAL_toEND.count_1_element;
+procedure tTST_dAimWW_itemsADD_defVAL_toEND.count_1_element;
 var l,i:integer;
-    def:byte;
+    def:tTST_tDefValue;
 begin
     def:=222;
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsADD(dAIM,l,1,def);
+    dAimWW_itemsADD(dAIM,l,1,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+1,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
     for i:=l to l   do _MANUAL_dAIM_tstVAL(dAIM,i,def);
 end;
 
-procedure tTST_dAimBB_itemsADD_defVAL_toEND.count_random;
+procedure tTST_dAimWW_itemsADD_defVAL_toEND.count_random;
 var l,c,i:integer;
     def:tTST_tDefValue;
 begin
@@ -645,7 +645,7 @@ begin
     l:=_MANUAL_dAIM_Length(dAIM);
     c:=1+random(16);
     //---!!!---
-    dAimBB_itemsADD(dAIM,l,c,def);
+    dAimWW_itemsADD(dAIM,l,c,def);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l+c,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
@@ -654,91 +654,91 @@ end;
 
 // -^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-
 
-procedure tTST_dAimBB_itemsDEL_fromBegin.count_0_element;
+procedure tTST_dAimWW_itemsDEL_fromBegin.count_0_element;
 var l,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsDEL(dAIM,0,0);
+    dAimWW_itemsDEL(dAIM,0,0);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_itemsDEL_fromBegin.count_1_element;
+procedure tTST_dAimWW_itemsDEL_fromBegin.count_1_element;
 var l,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsDEL(dAIM,0,1);
+    dAimWW_itemsDEL(dAIM,0,1);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l-1,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-2 do _MANUAL_dAIM_tstVAL(dAIM,i,i+1);
 end;
 
-procedure tTST_dAimBB_itemsDEL_fromBegin.count_lessLength;
+procedure tTST_dAimWW_itemsDEL_fromBegin.count_lessLength;
 var l,k,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=random(l div 2)+1;
     //---!!!---
-    dAimBB_itemsDEL(dAIM,0,k);
+    dAimWW_itemsDEL(dAIM,0,k);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l-k,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-k-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i+k);
 end;
 
-procedure tTST_dAimBB_itemsDEL_fromBegin.count_Length;
+procedure tTST_dAimWW_itemsDEL_fromBegin.count_Length;
 var l:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsDEL(dAIM,0,l);
+    dAimWW_itemsDEL(dAIM,0,l);
     //---!!!---
     AssertNull(dAIM);
 end;
 
-procedure tTST_dAimBB_itemsDEL_fromBegin.count_moreLength;
+procedure tTST_dAimWW_itemsDEL_fromBegin.count_moreLength;
 var l:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsDEL(dAIM,0,l+1);
+    dAimWW_itemsDEL(dAIM,0,l+1);
     //---!!!---
     AssertNull(dAIM);
 end;
 
 //------------------------------------------------------------------------------
 
-procedure tTST_dAimBB_itemsDEL_fromEND.count_0_element;
+procedure tTST_dAimWW_itemsDEL_fromEND.count_0_element;
 var l,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsDEL(dAIM,l-1,0);
+    dAimWW_itemsDEL(dAIM,l-1,0);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_itemsDEL_fromEND.count_1_element;
+procedure tTST_dAimWW_itemsDEL_fromEND.count_1_element;
 var l,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    dAimBB_itemsDEL(dAIM,l-1,1);
+    dAimWW_itemsDEL(dAIM,l-1,1);
     //---
     AssertEquals('wrong "LENGTH"',l-1,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-2 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_itemsDEL_fromEND.count_lessLength;
+procedure tTST_dAimWW_itemsDEL_fromEND.count_lessLength;
 var l,k,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=random(l div 2)+1;
     //---!!!---
-    dAimBB_itemsDEL(dAIM,l-k,k);
+    dAimWW_itemsDEL(dAIM,l-k,k);
     //---
     AssertEquals('wrong "LENGTH"',l-k,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-k-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
@@ -746,52 +746,52 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure tTST_dAimBB_itemsDEL_fromMiddle.count_0_element;
+procedure tTST_dAimWW_itemsDEL_fromMiddle.count_0_element;
 var l,k,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=1+random(l div 4)+random(l div 2); // место удаляемого
     //---!!!---
-    dAimBB_itemsDEL(dAIM,k,0);
+    dAimWW_itemsDEL(dAIM,k,0);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to l-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i);
 end;
 
-procedure tTST_dAimBB_itemsDEL_fromMiddle.count_1_element;
+procedure tTST_dAimWW_itemsDEL_fromMiddle.count_1_element;
 var l,k,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=1+random(l div 4)+random(l div 2); // место удаляемого
     //---!!!---
-    dAimBB_itemsDEL(dAIM,k,1);
+    dAimWW_itemsDEL(dAIM,k,1);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l-1,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to k-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i+0);
     for i:=k to l-2 do _MANUAL_dAIM_tstVAL(dAIM,i,i+1);
 end;
 
-procedure tTST_dAimBB_itemsDEL_fromMiddle.count_less_thenEnd;
+procedure tTST_dAimWW_itemsDEL_fromMiddle.count_less_thenEnd;
 var l,k,c,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=1+random(l div 4)+random(l div 2); // место удаляемого
     c:=1+random((l-k)div 2);              // кол-во удаляемого
     //---!!!---
-    dAimBB_itemsDEL(dAIM,k,c);
+    dAimWW_itemsDEL(dAIM,k,c);
     //---!!!---
     AssertEquals('wrong "LENGTH"',l-c,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to k-1   do _MANUAL_dAIM_tstVAL(dAIM,i,i+0);
     for i:=k to l-c-1 do _MANUAL_dAIM_tstVAL(dAIM,i,i+c);
 end;
 
-procedure tTST_dAimBB_itemsDEL_fromMiddle.count_more_thenEnd;
+procedure tTST_dAimWW_itemsDEL_fromMiddle.count_more_thenEnd;
 var l,k,i:integer;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     k:=1+random(l div 4)+random(l div 2); // место удаляемого
     //---!!!---
-    dAimBB_itemsDEL(dAIM,k,l);
+    dAimWW_itemsDEL(dAIM,k,l);
     //---!!!---
     AssertEquals('wrong "LENGTH"',k,_MANUAL_dAIM_Length(dAIM));
     for i:=0 to k-1   do _MANUAL_dAIM_tstVAL(dAIM,i,i+0);
@@ -799,49 +799,49 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure tTST_dAimBB_FIND.noExistingValue;
+procedure tTST_dAimWW_FIND.noExistingValue;
 var l:integer;
-    i:byte;
+    i:Word;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
-    AssertFalse(dAimBB_fnd_Value(dAIM,l,i));
+    AssertFalse(dAimWW_fnd_Value(dAIM,l,i));
     //---!!!---
 end;
 
-procedure tTST_dAimBB_FIND.AllExistingValue;
+procedure tTST_dAimWW_FIND.AllExistingValue;
 var l:integer;
-    i:byte;
+    i:Word;
     j:tTST_tDefValue;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
     for j:=0 to l-1 do begin
-        AssertTrue  ('wrong FIND',dAimBB_fnd_Value(dAIM,j,i));
+        AssertTrue  ('wrong FIND',dAimWW_fnd_Value(dAIM,j,i));
         AssertEquals('wrong FIND place',j,i);
     end;
     //---!!!---
 end;
 
 initialization
-    RegisterTest(cTST_SuitePath,tTST_dAimBB_Base);
+    RegisterTest(cTST_SuitePath,tTST_dAimWW_Base);
 
-    RegisterTest(cTST_SuitePath+'.setLength',tTST_dAimBB_setLength_common);
-    RegisterTest(cTST_SuitePath+'.setLength',tTST_dAimBB_setLength_defVAL);
+    RegisterTest(cTST_SuitePath+'.setLength',tTST_dAimWW_setLength_common);
+    RegisterTest(cTST_SuitePath+'.setLength',tTST_dAimWW_setLength_defVAL);
 
-    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimBB_itemsADD_common_toBegin);
-    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimBB_itemsADD_common_toMiddle);
-    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimBB_itemsADD_common_toEND);
+    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimWW_itemsADD_common_toBegin);
+    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimWW_itemsADD_common_toMiddle);
+    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimWW_itemsADD_common_toEND);
 
-    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimBB_itemsADD_defVAL_toBegin);
-    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimBB_itemsADD_defVAL_toMiddle);
-    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimBB_itemsADD_defVAL_toEND);
+    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimWW_itemsADD_defVAL_toBegin);
+    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimWW_itemsADD_defVAL_toMiddle);
+    RegisterTest(cTST_SuitePath+'.itemsADD' ,tTST_dAimWW_itemsADD_defVAL_toEND);
 
-    RegisterTest(cTST_SuitePath+'.itemsDEL' ,tTST_dAimBB_itemsDEL_fromBegin);
-    RegisterTest(cTST_SuitePath+'.itemsDEL' ,tTST_dAimBB_itemsDEL_fromMiddle);
-    RegisterTest(cTST_SuitePath+'.itemsDEL' ,tTST_dAimBB_itemsDEL_fromEnd);
+    RegisterTest(cTST_SuitePath+'.itemsDEL' ,tTST_dAimWW_itemsDEL_fromBegin);
+    RegisterTest(cTST_SuitePath+'.itemsDEL' ,tTST_dAimWW_itemsDEL_fromMiddle);
+    RegisterTest(cTST_SuitePath+'.itemsDEL' ,tTST_dAimWW_itemsDEL_fromEnd);
 
-    RegisterTest(cTST_SuitePath+'.FIND' ,tTST_dAimBB_FIND);
+    RegisterTest(cTST_SuitePath+'.FIND'     ,tTST_dAimWW_FIND);
 end.
 
 
