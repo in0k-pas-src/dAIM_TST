@@ -15,16 +15,16 @@ type
 
  tTST_dAim__coreTestCase=class(TTestCase)
   protected
-   _lngSizeOf_:word;
-   _itmSizeOf_:word;
+   _lngSizeOf_:word; //< размер переменной ДЛИННА
+   _itmSizeOf_:word; //< размер одного ЭЛЕМЕНТА
     function  _MANUAL_dAIM_create(Length:integer):pointer;
     procedure _MANUAL_dAIM_FINAL (var dAIM:pointer);
-    function  _MANUAL_dAIM_Length(dAIM:pointer):integer;
-    function  _MANUAL_dAIM_pItem (dAIM:pointer; index:integer):pointer;
-    procedure _MANUAL_dAIM_number(dAIM:pointer);
-    procedure _MANUAL_dAIM_tstVAL(dAIM:pointer; index:integer; value:integer);
+    function  _MANUAL_dAIM_Length(dAIM:pointer):SizeInt;
+    function  _MANUAL_dAIM_pItem (dAIM:pointer; index:SizeInt):pointer;
+    procedure _MANUAL_dAIM_nmbr01(dAIM:pointer);
+    procedure _MANUAL_dAIM_tstVAL(dAIM:pointer; index:SizeInt; value:integer);
   protected
-    dAIM:pointer;
+    dAIM:pointer; //< подопотный
   protected
     procedure SetUp;    override;
     procedure TearDown; override;
@@ -36,27 +36,30 @@ implementation
 
 constructor tTST_dAim__coreTestCase.Create;
 begin
-   inherited;
-  _lngSizeOf_:=0;
-  _itmSizeOf_:=0;
+    inherited;
+   _lngSizeOf_:=0;
+   _itmSizeOf_:=0;
 end;
 
 procedure tTST_dAim__coreTestCase.SetUp;
 begin
-   dAIM:=nil;
+    dAIM:=nil;
 end;
 
 procedure tTST_dAim__coreTestCase.TearDown;
 begin
-   dAIM:=nil;
+    if (dAIM<>nil)and(_lngSizeOf_>0)and(_itmSizeOf_>0) then begin
+       _MANUAL_dAIM_FINAL(dAIM);
+    end;
+    dAIM:=nil;
 end;
 
 //------------------------------------------------------------------------------
 
 function tTST_dAim__coreTestCase._MANUAL_dAIM_create(Length:integer):pointer;
 begin
-   AssertTrue('MANUAL_dAIM_Length is FAIL: _lngSizeOf_ not set',_lngSizeOf_ in [1,2,4,8]);
-   AssertTrue('MANUAL_dAIM_Length is FAIL: _itmSizeOf_ not set',_itmSizeOf_>0);
+   AssertTrue('MANUAL_dAIM_create is FAIL: _lngSizeOf_ not set',_lngSizeOf_ in [1,2,4,8]);
+   AssertTrue('MANUAL_dAIM_create is FAIL: _itmSizeOf_ not set',_itmSizeOf_>0);
    //---
    Getmem(result,_lngSizeOf_+_itmSizeOf_*Length);
    case _lngSizeOf_ of
@@ -70,15 +73,15 @@ end;
 
 procedure tTST_dAim__coreTestCase._MANUAL_dAIM_FINAL(var dAIM:pointer);
 begin
-    AssertTrue('MANUAL_dAIM_Length is FAIL: _lngSizeOf_ not set',_lngSizeOf_ in [1,2,4,8]);
-    AssertTrue('MANUAL_dAIM_Length is FAIL: _itmSizeOf_ not set',_itmSizeOf_>0);
+    AssertTrue('MANUAL_dAIM_FINAL is FAIL: _lngSizeOf_ not set',_lngSizeOf_ in [1,2,4,8]);
+    AssertTrue('MANUAL_dAIM_FINAL is FAIL: _itmSizeOf_ not set',_itmSizeOf_>0);
     if dAIM<>nil then begin
       Freememory(dAIM,_lngSizeOf_+_itmSizeOf_*_MANUAL_dAIM_Length(dAIM));
     end;
     dAIM:=NIL;
 end;
 
-function tTST_dAim__coreTestCase._MANUAL_dAIM_Length(dAIM:pointer):integer;
+function tTST_dAim__coreTestCase._MANUAL_dAIM_Length(dAIM:pointer):SizeInt;
 begin
     AssertTrue('MANUAL_dAIM_Length is FAIL: _lngSizeOf_ not set',_lngSizeOf_ in [1,2,4,8]);
     AssertTrue('MANUAL_dAIM_Length is FAIL: _itmSizeOf_ not set',_itmSizeOf_>0);
@@ -93,7 +96,7 @@ begin
     end;
 end;
 
-function tTST_dAim__coreTestCase._MANUAL_dAIM_pItem (dAIM:pointer; index:integer):pointer;
+function tTST_dAim__coreTestCase._MANUAL_dAIM_pItem (dAIM:pointer; index:SizeInt):pointer;
 begin
     AssertNotNull('MANUAL_dAIM_Length is FAIL:  dAIM not set',dAIM);
     AssertTrue   ('MANUAL_dAIM_Length is FAIL: _lngSizeOf_ not set',_lngSizeOf_ in [1,2,4,8]);
@@ -102,8 +105,8 @@ begin
     result:=dAim+_lngSizeOf_+ _itmSizeOf_*index;
 end;
 
-procedure tTST_dAim__coreTestCase._MANUAL_dAIM_number(dAIM:pointer);
-var i:integer;
+procedure tTST_dAim__coreTestCase._MANUAL_dAIM_nmbr01(dAIM:pointer);
+var i:SizeInt;
 begin
     AssertNotNull('_MANUAL_dAIM_number is FAIL:  dAIM not set',dAIM);
     AssertTrue   ('_MANUAL_dAIM_number is FAIL: _lngSizeOf_ not set',_lngSizeOf_ in [1,2,4,8]);
@@ -119,24 +122,18 @@ begin
     end;
 end;
 
-procedure tTST_dAim__coreTestCase._MANUAL_dAIM_tstVAL(dAIM:pointer; index:integer; value:integer);
-var p:pointer;
-    v:integer;
+procedure tTST_dAim__coreTestCase._MANUAL_dAIM_tstVAL(dAIM:pointer; index:SizeInt; value:integer);
 begin
     AssertNotNull('_MANUAL_dAIM_tstVAL is FAIL:  dAIM not set',dAIM);
     AssertTrue   ('_MANUAL_dAIM_tstVAL is FAIL: _lngSizeOf_ not set',_lngSizeOf_ in [1,2,4,8]);
-    AssertTrue   ('_MANUAL_dAIM_tstVAL is FAIL: _itmSizeOf_ not set',_itmSizeOf_ in [1,2,4,8]);
+    AssertTrue   ('_MANUAL_dAIM_tstVAL is FAIL: _itmSizeOf_ not set',_itmSizeOf_ in [1,2,4]);
     //---
-    p:=_MANUAL_dAIM_pItem(dAIM,index);
     case _itmSizeOf_ of
-      1  : v:=pByte (p)^;
-      2  : v:=PWord (p)^;
-      4  : v:=pDWord(p)^;
-      8  : v:=pQWord(p)^;
+      1  : AssertEquals('Items['+inttostr(index)+'].Value',Byte (value),pByte (_MANUAL_dAIM_pItem(dAIM,index))^);
+      2  : AssertEquals('Items['+inttostr(index)+'].Value',Word (value),PWord (_MANUAL_dAIM_pItem(dAIM,index))^);
+      4  : AssertEquals('Items['+inttostr(index)+'].Value',DWord(value),pDWord(_MANUAL_dAIM_pItem(dAIM,index))^);
     end;
-    AssertEquals('Items['+inttostr(index)+'].Value',value,v);
 end;
-
 
 end.
 

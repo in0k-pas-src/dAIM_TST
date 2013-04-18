@@ -7,7 +7,7 @@ unit ALL_Tests_dAIM;
 interface
 
 uses
-  ALL_Tests_dAIM_cntByte;
+  uTST_dAimBB_CommonSET;
 
 implementation
 
