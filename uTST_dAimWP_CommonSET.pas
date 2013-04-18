@@ -800,8 +800,8 @@ end;
 //------------------------------------------------------------------------------
 
 procedure tTST_dAimWP_FIND.noExistingValue;
-var l:Word;
-    i:Word;
+var l:PtrUInt;
+    i:word;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
@@ -810,9 +810,9 @@ begin
 end;
 
 procedure tTST_dAimWP_FIND.AllExistingValue;
-var l:Word;
-    i:Word;
-    j:Word;
+var l:PtrUInt;
+    i:word;
+    j:PtrUInt;
 begin
     l:=_MANUAL_dAIM_Length(dAIM);
     //---!!!---
